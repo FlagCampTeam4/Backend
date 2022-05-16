@@ -1,5 +1,6 @@
 package com.team4.dispatch.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "orders")
-@JsonDeserialize(builder = User.Builder.class)
+@JsonDeserialize(builder = Order.Builder.class)
 public class Order implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -19,6 +20,7 @@ public class Order implements Serializable {
     private Long orderID;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @JoinColumn(name = "robot_id")
     private Robot robotID;
 
@@ -45,9 +47,11 @@ public class Order implements Serializable {
 
 
     @JsonProperty("pick_up_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime pickUpTime;
 
     @JsonProperty("delivery_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deliveryTime;
 
     @JsonProperty("order_status")
@@ -123,21 +127,36 @@ public class Order implements Serializable {
         return orderStatus;
     }
 
+    public Order setGuest(User guest) {
+        this.guest = guest;
+        return this;
+    }
+
+    public Order setRobotID(Robot robotID) {
+        this.robotID = robotID;
+        return this;
+    }
+
     public static class Builder {
 
         @JsonProperty("order_ID")
         private Long orderID;
 
+        @JsonProperty("robot_ID")
         private Robot robotID;
 
         private User guest;
 
+        @JsonProperty("weight")
         private int weight;
 
+        @JsonProperty("length")
         private int length;
 
+        @JsonProperty("width")
         private int width;
 
+        @JsonProperty("height")
         private int height;
 
         @JsonProperty("total_price")
@@ -151,9 +170,11 @@ public class Order implements Serializable {
 
 
         @JsonProperty("pick_up_time")
+        @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
         private LocalDateTime pickUpTime;
 
         @JsonProperty("delivery_time")
+        @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
         private LocalDateTime deliveryTime;
 
         @JsonProperty("order_status")
@@ -169,7 +190,7 @@ public class Order implements Serializable {
             return this;
         }
 
-        public Builder setUsername(User guest) {
+        public Builder setGuest(User guest) {
             this.guest = guest;
             return this;
         }

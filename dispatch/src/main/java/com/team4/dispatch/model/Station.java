@@ -11,7 +11,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "station")
-@JsonDeserialize(builder = User.Builder.class)
+@JsonDeserialize(builder = Station.Builder.class)
 public class Station implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
