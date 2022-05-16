@@ -9,22 +9,17 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "robot")
-@JsonDeserialize(builder = User.Builder.class)
+@JsonDeserialize(builder = Robot.Builder.class)
 public class Robot implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @JsonProperty("robot_ID")
     private int robotID;
 
     @ManyToOne
     @JoinColumn(name = "station_ID")
     private Station stationID;
-
-//
-//    @OneToOne(mappedBy = "robot")
-//    private Order order;
 
 
     public Robot() {}
