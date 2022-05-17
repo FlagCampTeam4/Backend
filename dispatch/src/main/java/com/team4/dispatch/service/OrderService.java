@@ -2,6 +2,7 @@ package com.team4.dispatch.service;
 
 import com.team4.dispatch.model.Order;
 import com.team4.dispatch.model.Robot;
+import com.team4.dispatch.model.User;
 import com.team4.dispatch.repository.OrderRepository;
 import com.team4.dispatch.repository.RobotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,6 @@ public class OrderService {
   public void addRobot(Robot robot) {
     robotRepository.save(robot);
   }
-
-
 
 //  @Transactional(isolation = Isolation.SERIALIZABLE)
 //  public void deleteOrder(Long orderId) throws OrderNotExistException {
