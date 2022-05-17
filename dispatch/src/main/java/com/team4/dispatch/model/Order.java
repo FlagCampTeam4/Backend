@@ -136,6 +136,10 @@ public class Order implements Serializable {
         this.robotID = robotID;
         return this;
     }
+    public Order setOrderStatus(int orderStatus) {
+        this.orderStatus = orderStatus;
+        return this;
+    }
 
     public static class Builder {
 
