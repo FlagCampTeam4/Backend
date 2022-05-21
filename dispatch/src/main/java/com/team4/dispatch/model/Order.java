@@ -28,6 +28,12 @@ public class Order implements Serializable {
     @JoinColumn(name = "user_id")
     private User guest;
 
+    @JsonProperty("receiver_name")
+    private String receiverName;
+
+    @JsonProperty("station_ID")
+    private int stationID;
+
     private int weight;
 
     private int length;
@@ -45,7 +51,6 @@ public class Order implements Serializable {
     @JsonProperty("delivery_address")
     private String deliveryAddress;
 
-
     @JsonProperty("pick_up_time")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime pickUpTime;
@@ -62,6 +67,8 @@ public class Order implements Serializable {
     public Order(Builder builder) {
         this.orderID = builder.orderID;
         this.robotID = builder.robotID;
+        this.receiverName = builder.receiverName;
+        this.stationID = builder.stationID;
         this.guest = builder.guest;
         this.weight = builder.weight;
         this.length = builder.length;
@@ -73,6 +80,13 @@ public class Order implements Serializable {
         this.pickUpTime = builder.pickUpTime;
         this.deliveryTime = builder.deliveryTime;
         this.orderStatus = builder.orderStatus;
+    }
+    public String getReceiverName() {
+        return receiverName;
+    }
+
+    public int getStationID() {
+        return stationID;
     }
 
     public Long getOrderID() {
@@ -136,15 +150,22 @@ public class Order implements Serializable {
         this.robotID = robotID;
         return this;
     }
+
+
     public Order setOrderStatus(int orderStatus) {
         this.orderStatus = orderStatus;
         return this;
     }
 
     public static class Builder {
+        @JsonProperty("receiver_name")
+        private String receiverName;
 
         @JsonProperty("order_ID")
         private Long orderID;
+
+        @JsonProperty("station_ID")
+        private int stationID;
 
         @JsonProperty("robot_ID")
         private Robot robotID;
@@ -184,6 +205,11 @@ public class Order implements Serializable {
         @JsonProperty("order_status")
         private int orderStatus; // 0, 1, 2 represent different status
 
+        public Builder setReceiverName(String receiverName) {
+            this.receiverName = receiverName;
+            return this;
+        }
+
         public Builder setOrderID(Long orderID) {
             this.orderID = orderID;
             return this;
@@ -191,6 +217,11 @@ public class Order implements Serializable {
 
         public Builder setRobotID(Robot robotID) {
             this.robotID = robotID;
+            return this;
+        }
+
+        public Builder setStationID(int stationID) {
+            this.stationID = stationID;
             return this;
         }
 
