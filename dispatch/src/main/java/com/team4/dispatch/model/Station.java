@@ -18,61 +18,45 @@ public class Station implements Serializable {
     @JsonProperty("station_ID")
     private int stationID;
 
-    private int longitude;
-
-    private int latitude;
+    @JsonProperty("station_address")
+    private String stationAddress;
 
     public Station() {}
 
     public Station(Builder builder) {
         this.stationID = builder.stationID;
-        this.longitude = builder.longitude;
-        this.latitude = builder.latitude;
+        this.stationAddress = builder.stationAddress;
     }
 
     public int getStationID() {
         return stationID;
     }
 
-    public int getLongitude() {
-        return longitude;
+    public String stationAddress() {
+        return stationAddress;
     }
-
-    public int getLatitude() {
-        return latitude;
-    }
-
 
 
     public static class Builder {
         @JsonProperty("station_ID")
         private int stationID;
 
-        @JsonProperty("longitude")
-        private int longitude;
-
-        @JsonProperty("latitude")
-        private int latitude;
+        @JsonProperty("station_address")
+        private String stationAddress;
 
         public Builder setStationID(int stationID) {
             this.stationID = stationID;
             return this;
         }
 
-        public Builder setLongitude(int longitude) {
-            this.longitude = longitude;
-            return this;
-        }
-
-        public Builder setLatitude(int latitude) {
-            this.latitude = latitude;
+        public Builder stationAddress(String stationAddress) {
+            this.stationAddress = stationAddress;
             return this;
         }
 
         public Station build() {
             return new Station(this);
         }
-
 
     }
 }
