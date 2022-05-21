@@ -37,6 +37,10 @@ public class Robot implements Serializable {
         return stationID;
     }
 
+    public void setStationID(Station stationID) {
+        this.stationID = stationID;
+    }
+
     public static class Builder {
 
         @JsonProperty("robot_ID")
